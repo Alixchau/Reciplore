@@ -7,28 +7,8 @@ import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 
 const RecipeCard = ({recipe}) => {
   return (
-    <Card>
-    <CardActionArea>
-      <CardMedia style={{height: 350}} img={recipe.image} title={recipe.title} alt="Recipe Image"/>
-      <CardContent>
-        <Typography variant='h5'>
-          {recipe.title}
-        </Typography>
-        <Typography variant='body2' color="text.secondary"> 
-          {recipe.summary}
-        </Typography>
-        <Typography variant='body2' color="text.secondary"> 
-          <AvTimerIcon /> {recipe.readyInMinutes}
-        </Typography>
-        <Typography variant='body2' color="text.secondary"> 
-         <FavoriteIcon /> {recipe.aggregateLikes}
-        </Typography>
-        {
-          //loop diet array
+    <Card elevation={6}>
 
-        }
-      </CardContent>
-      </CardActionArea>
     </Card>
   )
 }

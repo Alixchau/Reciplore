@@ -49,12 +49,12 @@ export const getRecipeInstructions = async(id) => {
 };
 
 //Get 4 Random recipes when app mounts
-export const getRandomRecipe = async() => {
-  const NUMBER = 4; 
+export const getRandomRecipe = async(recipeCount) => {
+
   try {
     const{data} = await axios.get(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}`,{
       params:{
-        number: NUMBER,
+        number: recipeCount,
       }
     });
     console.log(data);

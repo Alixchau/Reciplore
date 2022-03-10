@@ -1,31 +1,35 @@
-import React, {useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from './components/Header/Header';
-import RecipeCard from './components/RecipeCard/RecipeCard';
 import { getByIngredient, getMealPlan, getRecipeInstructions, getRandomRecipe } from './api/ApiCalls';
 import { CssBaseline, Grid } from '@material-ui/core';
+import RecipeCollection from './components/RecipesCollection/RecipeCollection';
 
 const App = () => {
-  
-  useEffect(()=>{
+  const RECIPE_COUNT = 4; //Get 4 Random recipes when App mounts
+  const [recipes, setRecipes] = useState([]);
+ 
+  useEffect(() => {
     //getMealPlan("day", 2000,"vegetarian","shellfish")
     //getRecipeInstructions(324694);
-   // getRandomRecipe();
-  },[]);
+
+
+    getRandomRecipe(RECIPE_COUNT)
+      .then(data => {
+        setRecipes(data.recipes)
+
+      });
+  }, []);
 
   return (
 
     <div>
       <CssBaseline />
       <Header />
-      <Grid container spacing={3} >
-        <Grid item xs={12} md={4}>
 
-        </Grid>
+      <RecipeCollection 
+        recipes={recipes}
+      /> 
 
-        <Grid item xs={12} md={8}>
-
-        </Grid>
-      </Grid>
     </div>
   )
 }
