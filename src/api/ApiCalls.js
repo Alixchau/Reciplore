@@ -52,7 +52,7 @@ export const getRecipeInstructions = async(id) => {
 export const getRandomRecipe = async(recipeCount) => {
 
   try {
-    const{data} = await axios.get(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}`,{
+    const {data} = await axios.get(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}`,{
       params:{
         number: recipeCount,
       }

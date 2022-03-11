@@ -13,30 +13,33 @@ const RecipeCollection = ({recipes}) => {
       {recipes.map((recipe) => (
         <Grid  item xs={12} md={6}>
        {/*   <RecipeCard recipe={recipe} /> */}
-
-       <CardActionArea>
-      <CardMedia style={{height: 300}} image={recipe.image} title={recipe.title} alt="Recipe Image"/>
+       <Card elevation={6}>
+       <CardActionArea onClick>
+       
+      <CardMedia style={{height: 300}} image={recipe.image} title={recipe.title} alt="Recipe Image" key={recipe.id}/>
       <CardContent>
-        <Typography variant='h5'>
+        <Typography variant='h5' key={recipe.id}>
           {recipe.title}
         </Typography>
-        {recipe.diets?.map(diet =>(
-          <Typography vvariant='body2' color="text.secondary">
+     
+        {recipe.diets?.map((diet,index) =>(
+          <Typography vvariant='body2' color="text.secondary" key={index}> 
          <CheckCircleRoundedIcon /> {diet}
         </Typography>
         )
         )}
 
-        <Typography variant='body2' color="text.secondary"> 
-
+        <Typography variant='body2' color="secondary" key={recipe.id}> 
           <AvTimerIcon /> {recipe.readyInMinutes} mins 
         </Typography>
-        <Typography variant='body2' color="text.secondary"> 
-         <FavoriteIcon /> {recipe.aggregateLikes}
+        <Typography variant='body2' key={recipe.id}> 
+         <FavoriteIcon  color="secondary"/> {recipe.aggregateLikes} likes
         </Typography>
 
       </CardContent>
+      
       </CardActionArea>
+      </Card>
 
 
           
