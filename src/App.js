@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header/Header';
 import { getByIngredient, getMealPlan, getRecipeInstructions, getRandomRecipe } from './api/ApiCalls';
 import { CssBaseline, Grid } from '@material-ui/core';
@@ -25,12 +26,13 @@ const App = () => {
     <div>
       <CssBaseline />
       <Header />
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<RecipeCollection recipes={recipes} />} />
+          <Route path={"/recipe/:recipeId"} element={<RecipeInstruction />} />
 
-      <RecipeCollection
-        recipes={recipes}
-      />
-      <RecipeInstruction
-        id='640349' />
+        </Routes>
+      </Router>
     </div>
   )
 }

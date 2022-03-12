@@ -33,7 +33,7 @@ export const getMealPlan = async(timeFrame, targetCalories, diet, exclude) => {
   }
 }
 
-//Get Analyzed Recipe Instructions
+//Get Analyzed Recipe Instructions on click of a recipe card
 export const getRecipeInstructions = async(id) => {
   try {
     const{data} = await axios.get(`https://api.spoonacular.com/recipes/${id}/analyzedInstructions?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}`,{
@@ -47,6 +47,20 @@ export const getRecipeInstructions = async(id) => {
     console.log(error)
   }
 };
+
+//Get Ingredients by ID on click of a recipe card
+export const getIngredientById = async(id) => {
+  try {
+    const {data} = await axios.get(`https://api.spoonacular.com/recipes/${id}/ingredientWidget.json?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}`,{
+      params:{
+        id: id
+      }
+    });
+    return data;
+  } catch (error) {
+    console.log(error)
+  }
+;}
 
 //Get 4 Random recipes when app mounts
 export const getRandomRecipe = async(recipeCount) => {
