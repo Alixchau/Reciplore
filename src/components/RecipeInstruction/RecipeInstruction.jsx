@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import parse from 'html-react-parser';
 import { getRecipeInstructions, getIngredientById } from '../../api/ApiCalls.js';
 import { CardMedia, Grid, Paper, Typography } from '@material-ui/core';
 
@@ -26,18 +27,20 @@ const RecipeInstruction = () => {
       )
   }, []);
 
+
   return (
     <Paper>
       <Grid container spacing={2}>
         <Typography variant='h5'>Ingredients</Typography>
-        {
+        
+      {
           ingredients.map(ingredient =>(
             <Grid container display="flex" justifyContent='space-between'> 
-            <img src={ingredient.image}/>  <Grid item xs={12}>{ingredient.name} </Grid>
+            <img src={`https://spoonacular.com/cdn/ingredients_100x100/${ingredient.image}`} alt="ingredients" />  <Grid item xs={12}>{ingredient.name} </Grid>
             <Grid item xs={12}>{ingredient.amount.metric.value} {ingredient.amount.metric.unit} </Grid>
             </Grid>
           ))
-        }
+        } *
       </Grid>
       <Grid container spacing={2}>
         <Typography variant='h5'>Recipe Instructions</Typography>
@@ -48,7 +51,7 @@ const RecipeInstruction = () => {
                 Step {instruction.number}
               </Typography>
 
-              <Grid item xs={12} md={12} key={instruction.number}>
+              <Grid item fullWidth key={instruction.number}>
                 {instruction.step}
               </Grid>
 

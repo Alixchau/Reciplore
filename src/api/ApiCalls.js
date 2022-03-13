@@ -1,3 +1,4 @@
+import { SettingsRemote } from '@material-ui/icons';
 import axios from 'axios';
 
 //Search Recipes by Ingredients
@@ -15,23 +16,6 @@ export const getByIngredient = async(ingredients) => {
   }
 };
 
-//Generate Meal Plan
-export const getMealPlan = async(timeFrame, targetCalories, diet, exclude) => {
-  try {
-    const {data} = await axios.get(`https://api.spoonacular.com/mealplanner/generate?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}`,{
-    params:{
-      timeFrame: timeFrame,
-      targetCalories: targetCalories,
-      diet: diet,
-      exclude: exclude,
-    }
-    });
-
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-}
 
 //Get Analyzed Recipe Instructions on click of a recipe card
 export const getRecipeInstructions = async(id) => {
@@ -49,18 +33,21 @@ export const getRecipeInstructions = async(id) => {
 };
 
 //Get Ingredients by ID on click of a recipe card
-export const getIngredientById = async(id) => {
+ export const getIngredientById = async(id) => {
   try {
     const {data} = await axios.get(`https://api.spoonacular.com/recipes/${id}/ingredientWidget.json?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}`,{
       params:{
         id: id
       }
     });
+
+    //console.log(data);
     return data;
   } catch (error) {
     console.log(error)
   }
-;}
+};
+
 
 //Get 4 Random recipes when app mounts
 export const getRandomRecipe = async(recipeCount) => {
