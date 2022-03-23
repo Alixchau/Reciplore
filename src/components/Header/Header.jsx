@@ -1,8 +1,10 @@
+import React from 'react';
 import { AppBar, Toolbar, Typography, Button, Box, InputBase } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import MenuIcon from '@material-ui/icons/Menu';
 import { IconButton, CssBaseline } from '@mui/material';
-import SearchIcon from '@material-ui/icons/Search';
-import React from 'react';
+
+
 
 const Header = () => {
   return (
@@ -22,24 +24,14 @@ const Header = () => {
             Reciplore
           </Typography>
           <Box display="flex">
-            <Button color="inherit" >Meal Plan</Button>
-            <Button color="inherit">Recipe</Button>
-            <Button color="inherit">Meal Type</Button>
-            <Button color="inherit">Diet Type</Button>
+            <Link color="inherit" to="/">Explore Random Recipes</Link>
+            <Link color="inherit" to="/pairedwines">Wine Pairing</Link>
           </Box>
 
         </Toolbar>
       </AppBar>
 
-      <Box display="flex">
-        <Typography variant='h6'>Explore Recipes of your taste</Typography>
-        <div >
-              <div>
-                <SearchIcon />
-              </div>
-              <InputBase placeholder="Search…" />
-            </div>
-      </Box>
+
     </div>
   )
 }

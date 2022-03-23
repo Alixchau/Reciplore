@@ -9,6 +9,7 @@ const RecipeInstruction = () => {
   const [instructions, setInstructions] = useState([]);
   const [ingredients, setIngredients] = useState([]);
   const { recipeId } = useParams();
+  const imageURLPrefix = "https://spoonacular.com/cdn/ingredients_100x100/";
 
   useEffect(() => {
     getRecipeInstructions(recipeId)
@@ -30,13 +31,13 @@ const RecipeInstruction = () => {
 
   return (
     <Paper>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} >
         <Typography variant='h5'>Ingredients</Typography>
         
       {
           ingredients.map(ingredient =>(
             <Grid container display="flex" justifyContent='space-between'> 
-            <img src={`https://spoonacular.com/cdn/ingredients_100x100/${ingredient.image}`} alt="ingredients" />  <Grid item xs={12}>{ingredient.name} </Grid>
+            <img src={`${imageURLPrefix}${ingredient.image}`} alt="ingredients" />  <Grid item xs={12}>{ingredient.name} </Grid>
             <Grid item xs={12}>{ingredient.amount.metric.value} {ingredient.amount.metric.unit} </Grid>
             </Grid>
           ))

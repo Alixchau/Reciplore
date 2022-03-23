@@ -5,6 +5,7 @@ import { getByIngredient, getMealPlan, getRecipeInstructions, getRandomRecipe } 
 import { CssBaseline, Grid } from '@material-ui/core';
 import RecipeCollection from './components/RecipesCollection/RecipeCollection';
 import RecipeInstruction from './components/RecipeInstruction/RecipeInstruction.jsx';
+import PairedWines from './components/PairedWines/PairedWines';
 
 const App = () => {
   const RECIPE_COUNT = 4; //Get 4 Random recipes when App mounts
@@ -25,12 +26,13 @@ const App = () => {
 
     <div>
       <CssBaseline />
-      <Header />
+
       <Router>
+      <Header />
         <Routes>
           <Route exact path="/" element={<RecipeCollection recipes={recipes} />} />
           <Route path={"/recipe/:recipeId"} element={<RecipeInstruction />} />
-
+          <Route path={"/pairedwines"} element={<PairedWines />} />
         </Routes>
       </Router>
     </div>
