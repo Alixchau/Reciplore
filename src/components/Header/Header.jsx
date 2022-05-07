@@ -3,35 +3,19 @@ import { AppBar, Toolbar, Typography, Button, Box, InputBase } from '@material-u
 import { Link } from 'react-router-dom';
 import MenuIcon from '@material-ui/icons/Menu';
 import { IconButton, CssBaseline } from '@mui/material';
-
+import './header-styles.css';
 
 
 const Header = () => {
   return (
-    <div>
-      <AppBar position='static'>
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-            Reciplore
-          </Typography>
-          <Box display="flex">
-            <Link color="inherit" to="/">Explore Random Recipes</Link>
-            <Link color="inherit" to="/pairedwines">Wine Pairing</Link>
-          </Box>
-
-        </Toolbar>
-      </AppBar>
-
-
+    <div className='navbar'>
+    <div className='navContainer'>
+      <div className='navLogo'>Reciplore</div>
+      <div className='links'>
+        <Link color="inherit" to="/explore">Explore Random Recipes</Link>
+        <Link color="inherit" to="/pairedwines">Wine Pairing</Link>
+      </div>
+      </div>
     </div>
   )
 }

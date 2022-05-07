@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import parse from 'html-react-parser';
 import { getRecipeInstructions, getIngredientById } from '../../api/ApiCalls.js';
 import { CardMedia, Grid, Paper, Typography } from '@material-ui/core';
-
+import Header from '../Header/Header.jsx';
+import {RecipeContext} from '../../RecipeContext/RecipeContext';
 
 const RecipeInstruction = () => {
   const [instructions, setInstructions] = useState([]);
   const [ingredients, setIngredients] = useState([]);
   const { recipeId } = useParams();
   const imageURLPrefix = "https://spoonacular.com/cdn/ingredients_100x100/";
-
+  const recipe = useContext(RecipeContext);
+  console.log(recipe);
   useEffect(() => {
     getRecipeInstructions(recipeId)
       .then(data => {
@@ -30,7 +32,8 @@ const RecipeInstruction = () => {
 
 
   return (
-    <Paper>
+    <div className='instructionContainer'>
+    <Header />
       <Grid container spacing={2} >
         <Typography variant='h5'>Ingredients</Typography>
         
@@ -61,7 +64,7 @@ const RecipeInstruction = () => {
         }
 
       </Grid>
-    </Paper>
+    </div>
   )
 }
 
