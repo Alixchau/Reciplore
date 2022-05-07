@@ -4,15 +4,18 @@ import parse from 'html-react-parser';
 import { getRecipeInstructions, getIngredientById } from '../../api/ApiCalls.js';
 import { CardMedia, Grid, Paper, Typography } from '@material-ui/core';
 import Header from '../Header/Header.jsx';
-import {RecipeContext} from '../../RecipeContext/RecipeContext';
+import { RecipeContext } from '../../RecipeContext/RecipeContext';
+import AvTimerIcon from '@material-ui/icons/AvTimer';
+import { margin } from '@mui/system';
 
 const RecipeInstruction = () => {
   const [instructions, setInstructions] = useState([]);
   const [ingredients, setIngredients] = useState([]);
   const { recipeId } = useParams();
   const imageURLPrefix = "https://spoonacular.com/cdn/ingredients_100x100/";
-  const recipe = useContext(RecipeContext);
-  console.log(recipe);
+  const {recipeDetail} = useContext(RecipeContext);
+  console.log(recipeDetail);
+
   useEffect(() => {
     getRecipeInstructions(recipeId)
       .then(data => {
@@ -33,27 +36,38 @@ const RecipeInstruction = () => {
 
   return (
     <div className='instructionContainer'>
-    <Header />
-      <Grid container spacing={2} >
-        <Typography variant='h5'>Ingredients</Typography>
-        
-      {
-          ingredients.map(ingredient =>(
-            <Grid container display="flex" justifyContent='space-between'> 
-            <img src={`${imageURLPrefix}${ingredient.image}`} alt="ingredients" />  <Grid item xs={12}>{ingredient.name} </Grid>
-            <Grid item xs={12}>{ingredient.amount.metric.value} {ingredient.amount.metric.unit} </Grid>
-            </Grid>
+      <Header />
+      <div style={{ display: "flex", alignItems: "center", justifyContent:"space-around"}}>
+        <AvTimerIcon color="action" style={{ display: "flex", alignItems: "end" }}/>
+        <div style={{ display: "flex", flexDirection: "column", alignItem:"start" }}>
+        <p>READY TIME</p>
+        <p color="action" key={recipeDetail.id} style={{ padding: "2px 10px" }}>
+          {recipeDetail.readyInMinutes} mins
+        </p>
+        </div>
+      </div>
+      <h1>{recipeDetail.title}</h1>
+      <div style={{ height: "30%vh", display: "flex", alignItems: "center", justifyContent:"center"}}><img style={{borderRadius:"15px"}}src={recipeDetail.image} /></div>
+      <div container spacing={2} >
+        <h3>Ingredients</h3>
+
+        {
+          ingredients.map(ingredient => (
+            <div style={{backgroundColor:"white",display: "flex", justifyContent: 'space-between',borderRadius:"15px",  boxShadow: "0 3px 5px rgba(0,0,0,0.6)", margin:"10px 30px", padding:"10px 15px"  }}>
+              <img src={`${imageURLPrefix}${ingredient.image}`} alt="ingredients"  style={{marginLeft: "1rem", height: "70x"}}/>  <div style={{marginLeft: "4rem"}}>{ingredient.name} </div>
+              <div  style={{marginRight: "1rem"}}>{ingredient.amount.metric.value} {ingredient.amount.metric.unit} </div>
+            </div>
           ))
-        } *
-      </Grid>
+        } 
+      </div>
       <Grid container spacing={2}>
-        <Typography variant='h5'>Recipe Instructions</Typography>
+        <h2>Recipe Instructions</h2>
         {
           instructions.map(instruction => (
             <Grid>
-              <Typography variant="h5" key={instruction.number}>
+              <h3 key={instruction.number}>
                 Step {instruction.number}
-              </Typography>
+              </h3>
 
               <Grid item fullWidth key={instruction.number}>
                 {instruction.step}

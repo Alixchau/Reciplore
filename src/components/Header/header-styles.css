@@ -27,7 +27,7 @@
   font-weight: 500;
   font-family: 'Montserrat', sans-serif;
   display: flex;
-
+  cursor: pointer;
 }
 .navbar .navContainer .links{
   display: flex;
