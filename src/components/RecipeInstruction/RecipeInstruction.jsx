@@ -1,19 +1,19 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import parse from 'html-react-parser';
+import { useParams } from 'react-router-dom';
 import { getRecipeInstructions, getIngredientById } from '../../api/ApiCalls.js';
-import { CardMedia, Grid, Paper, Typography } from '@material-ui/core';
 import Header from '../Header/Header.jsx';
 import { RecipeContext } from '../../RecipeContext/RecipeContext';
-import AvTimerIcon from '@material-ui/icons/AvTimer';
-import { margin } from '@mui/system';
+import NULLPICTURE from "../../img/NULL.png";
+import './RecipInstruction_styles.css';
 
 const RecipeInstruction = () => {
   const [instructions, setInstructions] = useState([]);
   const [ingredients, setIngredients] = useState([]);
   const { recipeId } = useParams();
   const imageURLPrefix = "https://spoonacular.com/cdn/ingredients_100x100/";
-  const {recipeDetail} = useContext(RecipeContext);
+  const { recipeDetail } = useContext(RecipeContext);
+  const NULLPICTUREURL = "https://spoonacular.com/cdn/ingredients_100x100/null";
+
   console.log(recipeDetail);
 
   useEffect(() => {
@@ -35,49 +35,41 @@ const RecipeInstruction = () => {
 
 
   return (
-    <div className='instructionContainer'>
+    <div className='collectionContainer'>
       <Header />
-      <div style={{ display: "flex", alignItems: "center", justifyContent:"space-around"}}>
-        <AvTimerIcon color="action" style={{ display: "flex", alignItems: "end" }}/>
-        <div style={{ display: "flex", flexDirection: "column", alignItem:"start" }}>
-        <p>READY TIME</p>
-        <p color="action" key={recipeDetail.id} style={{ padding: "2px 10px" }}>
-          {recipeDetail.readyInMinutes} mins
-        </p>
-        </div>
-      </div>
-      <h1>{recipeDetail.title}</h1>
-      <div style={{ height: "30%vh", display: "flex", alignItems: "center", justifyContent:"center"}}><img style={{borderRadius:"15px"}}src={recipeDetail.image} /></div>
-      <div container spacing={2} >
-        <h3>Ingredients</h3>
+      <h1 className='recipe_title'>{recipeDetail.title}</h1>
+      <div className='img_div' ><img src={recipeDetail.image} /></div>
+      <div className='instruction_container'>
+        <h3 className='instruction_title'>Ingredients</h3>
 
         {
           ingredients.map(ingredient => (
-            <div style={{backgroundColor:"white",display: "flex", justifyContent: 'space-between',borderRadius:"15px",  boxShadow: "0 3px 5px rgba(0,0,0,0.6)", margin:"10px 30px", padding:"10px 15px"  }}>
-              <img src={`${imageURLPrefix}${ingredient.image}`} alt="ingredients"  style={{marginLeft: "1rem", height: "70x"}}/>  <div style={{marginLeft: "4rem"}}>{ingredient.name} </div>
-              <div  style={{marginRight: "1rem"}}>{ingredient.amount.metric.value} {ingredient.amount.metric.unit} </div>
+            <div className='ingredient_detail'>
+            <div className='img_title'>
+              <img src={`${imageURLPrefix}${ingredient.image}` === NULLPICTUREURL ? NULLPICTURE : `${imageURLPrefix}${ingredient.image}`} alt="ingredients"  key={ingredient.id} />  
+              <div className='ingredient_name'>{ingredient.name} </div>
+              </div>
+              <div className='ingredient_metric' key={ingredient.id}>{ingredient.amount.metric.value} {ingredient.amount.metric.unit} </div>
             </div>
           ))
-        } 
+        }
       </div>
-      <Grid container spacing={2}>
-        <h2>Recipe Instructions</h2>
+
+      <div className='instruction_container' >
+        <h3 className='instruction_title'>Recipe Instructions</h3>
         {
           instructions.map(instruction => (
-            <Grid>
-              <h3 key={instruction.number}>
+            <div >
+              <p className='step_number' key={instruction.number}>
                 Step {instruction.number}
-              </h3>
-
-              <Grid item fullWidth key={instruction.number}>
+              </p>
+              <div className='instruction_detail' key={instruction.number}>
                 {instruction.step}
-              </Grid>
-
-            </Grid>
+              </div>
+            </div>
           ))
         }
-
-      </Grid>
+      </div>
     </div>
   )
 }

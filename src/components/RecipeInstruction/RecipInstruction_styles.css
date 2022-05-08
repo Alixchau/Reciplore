@@ -1,3 +1,77 @@
-.instructionContainer{
+/* .instructionContainer{
   padding: 0 2rem;
+} */
+
+.instruction_container{
+  width: 75vw;
+  margin: auto;
+}
+.recipe_title{
+  color: #383838;
+  margin: 2rem 0;
+  font-weight: bold;
+}
+.img_div{
+  display:flex;
+  align-items:center;
+  justify-content: center;
+}
+.img_div img{
+  border-radius: 15px;
+  width: 40vw;
+}
+.instruction_title{
+  font-size: 30px;
+  color: #383838;
+  margin: 5rem 0 2rem;
+}
+/* style={{ backgroundColor: "white", display: "flex", justifyContent: 'space-between', borderRadius: "15px", boxShadow: "0 3px 5px rgba(0,0,0,0.6)", margin: "10px 30px", padding: "10px 15px" }} */
+.ingredient_detail{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 15px;
+  box-shadow: 3px 3px 5px rgba(83, 92, 85, 0.671);
+  padding: 10px 15px;
+  margin: 1.5rem 0;
+  height: 5rem;
+  background-color: var(--second-color-green);
+}
+.ingredient_detail .img_title{
+  display: flex;
+  align-items: center;
+}
+.ingredient_detail img{
+  margin-left: 1rem;
+  width:  70px;
+  height: 100%;
+}
+.ingredient_name{
+  margin-left: 2rem;
+  color: #383838;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+}
+.ingredient_metric{
+  margin-right: 1rem;
+  color: #383838;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+}
+.step_number{
+  font-size: 20px;
+  color: #383838;
+  margin: 1rem;
+  font-weight: bold;
+  font-family: 'Open Sans', sans-serif;
+}
+.instruction_detail{
+  padding: 20px 20px;
+  background: var(--second-color-green);
+  color:  #383838;
+  border-radius: 15px;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.6);
+  line-height: 2;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
 }
