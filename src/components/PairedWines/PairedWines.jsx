@@ -4,7 +4,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import { getPairedWines } from '../../api/ApiCalls.js';
 import { render } from '@testing-library/react';
 import Header from '../Header/Header.jsx';
-import './PariedWines_styles.css';
+import './PairedWines_styles.css';
+import WineBarRoundedIcon from '@mui/icons-material/WineBarRounded';
 
 const PairedWines = () => {
 
@@ -17,7 +18,7 @@ const PairedWines = () => {
   };
 
   function handleSubmit(event) {
-   event.preventDefault();
+    event.preventDefault();
     getPairedWines(food).then
       (data => {
         setPairedWines(data);
@@ -29,7 +30,7 @@ const PairedWines = () => {
   return (
     <div className='collectionContainer'>
       <Header />
-      <div className='search_section'>
+      <div className='outer_section'>
         <form onSubmit={handleSubmit}>
           <h1 className='search_title'>Find a wine that goes well with a food.</h1>
           <div className='serch_bar'>
@@ -39,46 +40,54 @@ const PairedWines = () => {
             </button>
           </div>
         </form>
-        <div className='tags_section'>
-          <div>Try these popular tags</div>
+        <div className='inner_section'>
+          <div>Cant think of anything? Try these popular tags and click search</div>
           <div className='tag_buttons'>
-          <button className='tag_button' onClick={()=>setFood("Steak")}>Steak</button>
-          <button className='tag_button' onClick={()=>setFood("Sushi")}>Sushi</button>
-          <button className='tag_button' onClick={()=>setFood("Barbecue")}>Barbecue</button>
+            <button className='tag_button' onClick={() => setFood("Steak")}>Steak</button>
+            <button className='tag_button' onClick={() => setFood("Sushi")}>Sushi</button>
+            <button className='tag_button' onClick={() => setFood("Barbecue")}>Barbecue</button>
           </div>
         </div>
-        {pairedWines.message ?
-          (<div>
-            {pairedWines.message}
-          </div>)
-          :
-          null}
-        {
-          pairedWines.pairedWines ?
-            (<p>Here's the paried Wines for you</p>):null
-        }
-        {pairedWines.pairedWines?.map(pairedWine => (
-          <div>
-            <p>{pairedWine}</p>
-          </div>
-        ))}
-      </div>
-      { pairedWines.productMatches ?
-      (
-            <div>
-              <p>Here's a matched product for you. Bon Appetit!</p>
-              <img src={`${pairedWines.productMatches[0].imageUrl}`} alt="matchedWine" onClick={() => window.open(`${pairedWines.productMatches[0].link}`)} />
-              <p>{pairedWines.productMatches[0].title}</p>
-              <p variant='body2' color="secondary" >{pairedWines.productMatches[0].description} </p>
-              <p>{pairedWines.productMatches[0].price}</p>
+
+        <div className='inner_section'>
+          {pairedWines.message ?
+            (<div>
+              {pairedWines.message}
+            </div>)
+            :
+            null}
+          {
+            pairedWines.pairedWines ?
+              (<p>Paired Wines for {food} are:</p>) : null
+          }
+          {pairedWines.pairedWines?.map(pairedWine => (
+            <div className='paired_result'>
+              <WineBarRoundedIcon color="action"/><p>{pairedWine}</p>
             </div>
-          )
-          :
-          null
-      }
+          ))}
+        </div>
+
+        <div className='inner_section'>
+          {pairedWines.productMatches ?
+            (
+              <div>
+                <p>Here's a recommended product for you. Bon Appetit!</p>
+                <div className='recommend_wine_container'>
+                <img className='recommend_wine' src={`${pairedWines.productMatches[0].imageUrl}`} alt="matchedWine" onClick={() => window.open(`${pairedWines.productMatches[0].link}`)} />
+                </div>
+                <p>{pairedWines.productMatches[0].title}</p>
+                <p variant='body2' color="secondary" >{pairedWines.productMatches[0].description} </p>
+                <p>{pairedWines.productMatches[0].price}</p>
+                <button className='knowmore_button' onClick={() => window.open(`${pairedWines.productMatches[0].link}`)}>Know More</button>
+              </div>
+            )
+            :
+            null
+          }
+        </div>
+      </div>
     </div>
   )
-
 };
 
 export default PairedWines;

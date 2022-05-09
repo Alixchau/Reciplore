@@ -1,4 +1,4 @@
-.search_section{
+.outer_section{
   width: 40rem;
   margin: auto;
 }
@@ -37,7 +37,7 @@
 background-color: var(--primary-color-green);
 color: var(--last-color);
 }
-.tags_section{
+.inner_section{
   margin: 2rem 2rem;
   display: flex;
   flex-direction: column;
@@ -53,7 +53,6 @@ color: var(--last-color);
   padding: 10px 20px;
   background-color: var(--second-color-green);
   color: var(--primary-color-green);
-  width: rem;
   border: 0;
   border-radius: 10px;
   box-shadow: 0 3px 5px rgba(0,0,0,0.6);
@@ -65,4 +64,37 @@ color: var(--last-color);
   background-color: var(--primary-color-green);
   color: var(--last-color);
 }
-
+.paired_result{
+  display: flex;
+  align-items: center;
+  line-height: 2;
+}
+.recommend_wine_container{
+  display:flex;
+  align-items:center;
+  justify-content: center;
+  border-radius: 15px;
+}
+.recommend_wine{
+  margin: 2rem 0;
+  max-height: 15vw;
+  cursor: pointer;
+}
+.knowmore_button{
+  margin: auto;
+  margin-top: 1rem;
+  display: flex;
+  padding: 10px 20px;
+  background-color: var(--second-color-green);
+  color: var(--primary-color-green);
+  border: 0;
+  border-radius: 10px;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.6);
+  cursor: pointer;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+}
+.knowmore_button:hover{
+  background-color: var(--primary-color-green);
+  color: var(--last-color);
+}

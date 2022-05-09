@@ -25,7 +25,6 @@
   color: #383838;
   margin: 5rem 0 2rem;
 }
-/* style={{ backgroundColor: "white", display: "flex", justifyContent: 'space-between', borderRadius: "15px", boxShadow: "0 3px 5px rgba(0,0,0,0.6)", margin: "10px 30px", padding: "10px 15px" }} */
 .ingredient_detail{
   display: flex;
   justify-content: space-between;
