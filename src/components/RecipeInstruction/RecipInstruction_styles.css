@@ -35,7 +35,7 @@
   padding: 10px 15px;
   margin: 1.5rem 0;
   height: 5rem;
-  background-color: var(--second-color-green);
+  background-color: var(--primary-color-green);
 }
 .ingredient_detail .img_title{
   display: flex;
@@ -45,30 +45,31 @@
   margin-left: 1rem;
   width:  70px;
   height: 100%;
+  max-height: 5rem;;
 }
 .ingredient_name{
   margin-left: 2rem;
-  color: #383838;
+  color: var(--last-color);
   font-family: 'Open Sans', sans-serif;
   font-weight: bold;
 }
 .ingredient_metric{
   margin-right: 1rem;
-  color: #383838;
+  color: var(--last-color);
   font-family: 'Open Sans', sans-serif;
   font-weight: bold;
 }
 .step_number{
-  font-size: 20px;
+  font-size: 18px;
   color: #383838;
-  margin: 1rem;
-  font-weight: bold;
+  margin: 1.5rem 0 0.5rem;
+  font-weight: 1000;
   font-family: 'Open Sans', sans-serif;
 }
 .instruction_detail{
   padding: 20px 20px;
-  background: var(--second-color-green);
-  color:  #383838;
+  background: var(--primary-color-green);
+  color: var(--last-color);
   border-radius: 15px;
   box-shadow: 0 3px 5px rgba(0,0,0,0.6);
   line-height: 2;

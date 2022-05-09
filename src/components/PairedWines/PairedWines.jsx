@@ -4,6 +4,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import { getPairedWines } from '../../api/ApiCalls.js';
 import { render } from '@testing-library/react';
 import Header from '../Header/Header.jsx';
+import './PariedWines_styles.css';
+
 const PairedWines = () => {
 
   const [food, setFood] = useState([]);
@@ -15,7 +17,7 @@ const PairedWines = () => {
   };
 
   function handleSubmit(event) {
-    event.preventDefault();
+   event.preventDefault();
     getPairedWines(food).then
       (data => {
         setPairedWines(data);
@@ -25,47 +27,50 @@ const PairedWines = () => {
 
 
   return (
-    <div>
-    <Header/>
-      <form onSubmit={handleSubmit}>
-        <Typography variant='h6'>Find a wine that goes well with a food.</Typography>
-        <InputBase placeholder="Search…" name="searchText" onChange={handleChange} />
-        <Button type="submit">
-          Search
-        </Button>
-      </form>
-
-      {pairedWines.message ?
-        (<div>
-          {pairedWines.message}
-        </div>)
-        :
-        null}
-      {
-        pairedWines.pairedWines ?
-          (
-            <Typography>Here's the paried Wines for you</Typography>
-          )
-          :
-          null
-      }
-      {pairedWines.pairedWines?.map(pairedWine => (
-        <div>
-
-          <Typography>{pairedWine}</Typography>
+    <div className='collectionContainer'>
+      <Header />
+      <div className='search_section'>
+        <form onSubmit={handleSubmit}>
+          <h1 className='search_title'>Find a wine that goes well with a food.</h1>
+          <div className='serch_bar'>
+            <input className='search_input' type="text" placeholder="Search…" name="searchText" onChange={handleChange} required value={food} />
+            <button className='search_button' type="submit">
+              Search
+            </button>
+          </div>
+        </form>
+        <div className='tags_section'>
+          <div>Try these popular tags</div>
+          <div className='tag_buttons'>
+          <button className='tag_button' onClick={()=>setFood("Steak")}>Steak</button>
+          <button className='tag_button' onClick={()=>setFood("Sushi")}>Sushi</button>
+          <button className='tag_button' onClick={()=>setFood("Barbecue")}>Barbecue</button>
+          </div>
         </div>
-      ))}
-
-      {
-        pairedWines.productMatches
-          ?
-          (
+        {pairedWines.message ?
+          (<div>
+            {pairedWines.message}
+          </div>)
+          :
+          null}
+        {
+          pairedWines.pairedWines ?
+            (<p>Here's the paried Wines for you</p>):null
+        }
+        {pairedWines.pairedWines?.map(pairedWine => (
+          <div>
+            <p>{pairedWine}</p>
+          </div>
+        ))}
+      </div>
+      { pairedWines.productMatches ?
+      (
             <div>
-              <Typography>Here's a matched product for you. Bon Appetit!</Typography>
+              <p>Here's a matched product for you. Bon Appetit!</p>
               <img src={`${pairedWines.productMatches[0].imageUrl}`} alt="matchedWine" onClick={() => window.open(`${pairedWines.productMatches[0].link}`)} />
-              <Typography>{pairedWines.productMatches[0].title}</Typography>
-              <Typography variant='body2' color="secondary" >{pairedWines.productMatches[0].description} </Typography>
-              <Typography>{pairedWines.productMatches[0].price}</Typography>
+              <p>{pairedWines.productMatches[0].title}</p>
+              <p variant='body2' color="secondary" >{pairedWines.productMatches[0].description} </p>
+              <p>{pairedWines.productMatches[0].price}</p>
             </div>
           )
           :

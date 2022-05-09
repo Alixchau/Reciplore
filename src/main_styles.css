@@ -1,8 +1,8 @@
 :root{
-  --primary-color-green: #21BF73;
+  --primary-color-green: #066163;
   --second-color-green: #B0EACD;
   --third-color-red: #FD5E53;
-  --last-color: #F9FCFB;
+  --last-color: #F2F2F2;
   --width: 85%;
 }
 *{
@@ -37,6 +37,5 @@ p{
   padding: 0 30px;
 }
 .collectionContainer{
-  padding: 0 2rem;
   margin: 0 0 2rem;
 }
