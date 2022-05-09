@@ -1,78 +1,65 @@
-import React, {createContext, useContext, useState} from 'react';
+import React, { useContext} from 'react';
 import { useNavigate } from 'react-router-dom';
-import RecipeCard from '../RecipeCard/RecipeCard';
 import { Grid } from '@material-ui/core';
-
-import { Box, Typography, Button, Card, CardMedia, CardContent, CardActions, Chip, CardActionArea } from '@material-ui/core';
+import { Card, CardMedia, CardContent,  CardActionArea } from '@material-ui/core';
 import AvTimerIcon from '@material-ui/icons/AvTimer';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 import CancelIcon from '@mui/icons-material/Cancel';
-
-import RecipeInstruction from '../RecipeInstruction/RecipeInstruction';
 import Header from '../Header/Header';
-import './RecipeCollection_styles.css';
-import '../../main_styles.css';
 import {RecipeContext} from '../../RecipeContext/RecipeContext';
+import './RecipeCollection_styles.css';
 
 
 const RecipeCollection = ({ recipes }) => {
   const navigate = useNavigate();
-  const { recipeDetail, setRecipeDetail } = useContext(RecipeContext);
+  const { setRecipeDetail } = useContext(RecipeContext); 
 
   return (
     <div className='collectionContainer'>
       <Header />
-      <Grid container spacing={3} >
-
-        {recipes.map((recipe) => (
-
+      <div className='collection_inner'>
+      <Grid container spacing={5}>
+        {recipes.map((recipe) => ( //map the recipes into cards
           <Grid item xs={12} md={6}>
-            {/*   <RecipeCard recipe={recipe} /> */}
             <Card elevation={6}>
-              <CardActionArea onClick={() => {
+              <CardActionArea onClick={() => { //set and store recipe detail into RecipeContext navigate to recipedetail page 
                 setRecipeDetail(recipe);
                 navigate(`recipeDetail/${recipe.id}`)}}>
-                <CardMedia style={{ height: 300 }} image={recipe.image} title={recipe.title} alt="Recipe Image" key={recipe.id} />
+                <CardMedia className='card_img' image={recipe.image} title={recipe.title} alt="Recipe Image" key={recipe.id} />
                 <CardContent>
-                  <h4 key={recipe.id} style={{marginBottom: "7px"}}>
+                  <h4 key={recipe.id} className="recipe_name">
                     {recipe.title}
                   </h4>
 
-                  <div style={{ display: "flex", alignItems: "center" }}>
+                  <div className='recipe_tags'>
                     {
                       recipe.dairyFree ?
                         <CheckCircleRoundedIcon color="action" /> :
                         <CancelIcon color="action" />
                     }
-                    <p style={{padding: "2px 10px"}}> Dairy Free</p>
+                    <p> Dairy Free</p>
                   </div>
 
-                  <div style={{ display: "flex", alignItems: "center" }}>
+                  <div className='recipe_tags'>
                     {
                       recipe.vegetarian ?
                         <CheckCircleRoundedIcon color="action" /> :
                         <CancelIcon color="action" />
                     }
-                    <p style={{padding: "2px 10px"}}> Vegetarian</p>
+                    <p > Vegetarian</p>
                   </div>
-                  {/*                   <div style={{ display: "flex", alignItems: "center" }}>
-                    {recipe.diets?.map((diet, index) => (
-                      <p color="text.secondary" key={index}>
-                        <CheckCircleRoundedIcon color="action" /> {diet}
-                      </p>
-                    ))}
-                  </div> */}
 
-                  <div style={{ display: "flex", alignItems: "center" }}>
+                  <div className='recipe_tags'>
                     <AvTimerIcon color="action" />
-                    <p color="action" key={recipe.id}  style={{padding: "2px 10px"}}>
+                    <p color="action" key={recipe.id}>
                       {recipe.readyInMinutes} mins
                     </p>
                   </div>
-                  <div style={{ display: "flex", alignItems: "center" }}>
+
+                  <div className='recipe_tags'>
                     <FavoriteIcon color="action" />
-                    <p key={recipe.id} style={{padding: "2px 10px"}}>
+                    <p key={recipe.id}>
                       {recipe.aggregateLikes} likes
                     </p>
                   </div>
@@ -83,6 +70,7 @@ const RecipeCollection = ({ recipes }) => {
         ))
         }
       </Grid>
+      </div>
     </div>
 
   )

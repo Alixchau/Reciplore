@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { Typography, Box, InputBase, Button } from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
+import React, { useState } from 'react';
 import { getPairedWines } from '../../api/ApiCalls.js';
-import { render } from '@testing-library/react';
 import Header from '../Header/Header.jsx';
-import './PairedWines_styles.css';
 import WineBarRoundedIcon from '@mui/icons-material/WineBarRounded';
+import './PairedWines_styles.css';
 
 const PairedWines = () => {
 
@@ -17,6 +14,7 @@ const PairedWines = () => {
     setFood(searchText);
   };
 
+  //submit search text to get paired wines by api call
   function handleSubmit(event) {
     event.preventDefault();
     getPairedWines(food).then
@@ -50,14 +48,14 @@ const PairedWines = () => {
         </div>
 
         <div className='inner_section'>
-          {pairedWines.message ?
+          {pairedWines.message ? //when there is no paired wines, display message
             (<div>
               {pairedWines.message}
             </div>)
             :
             null}
           {
-            pairedWines.pairedWines ?
+            pairedWines.pairedWines ? //display paired wines
               (<p>Paired Wines for {food} are:</p>) : null
           }
           {pairedWines.pairedWines?.map(pairedWine => (

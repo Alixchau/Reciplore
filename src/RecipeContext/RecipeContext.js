@@ -1,6 +1,6 @@
-import React, { createContext, useState, useContext } from 'react'
+import React, { createContext, useState } from 'react'
 
-
+//set recipeDetail from RecipeCollection's recipe onClick and pass it to RecipeInstruction page
 export const RecipeContext = createContext({
   recipeDetail: null,
   setRecipeDetail: () => null,

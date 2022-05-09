@@ -2,12 +2,10 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
-import '../../main_styles.css';
 import './Home_styles.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 
 const Home = () => {
+  //init Aos animation
   useEffect(() => {
     Aos.init({duration:1500});
   },[]);
@@ -23,7 +21,6 @@ const Home = () => {
       </div>
     </div>
   )
-
 }
 
 export default Home;

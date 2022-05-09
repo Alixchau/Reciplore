@@ -1,5 +1,17 @@
-/* .collectionContainer{
-  padding: 0 2rem;
+.collection_inner{
+  width: 85vw;
+  margin: auto;
 }
-
- */
+.card_img{
+  height: 300px;
+}
+.recipe_name{
+  margin-bottom: 7px;
+}
+.recipe_tags{
+  display: flex;
+  align-items: center;
+}
+.recipe_tags p{
+  padding: 2px 10px;
+}
