@@ -71,3 +71,25 @@
   font-family: 'Open Sans', sans-serif;
   font-weight: bold;
 }
+@media screen and (max-width: 1024px) {
+  .img_div img{
+    width: 60vw;
+  }
+}
+@media screen and (max-width: 600px) {
+ .recipe_title{
+   font-size:1.5rem;
+   margin: 2rem 0.5rem;
+ }
+ .instruction_container{
+  width: 90vw;
+  margin: auto;
+}
+.instruction_title{
+  font-size:1.5rem;
+  margin: 2rem 0.5rem;
+}
+.img_div img{
+  width: 80vw;
+}
+}
