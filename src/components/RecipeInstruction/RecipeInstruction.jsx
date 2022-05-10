@@ -22,7 +22,7 @@ const RecipeInstruction = () => {
         setInstructions(data[0].steps);
         console.log(data[0].steps)
       });
-  }, []);
+  }, [recipeId]);
 
   //load ingredients
   useEffect(() => {
@@ -32,7 +32,7 @@ const RecipeInstruction = () => {
         console.log(data.ingredients);
       }
       )
-  }, []);
+  }, [recipeId]);
 
 
   return (
@@ -40,7 +40,7 @@ const RecipeInstruction = () => {
       <Header />
       <div className='instruction_container'>
         <h1 className='recipe_title'>{recipeDetail.title}</h1>
-        <div className='img_div'><img src={recipeDetail.image} /></div>
+        <div className='img_div'><img src={recipeDetail.image} alt=""/></div>
 
         <h3 className='instruction_title'>Ingredients</h3>
         {
