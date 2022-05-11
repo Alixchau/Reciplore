@@ -7,6 +7,7 @@ import RecipeInstruction from './components/RecipeInstruction/RecipeInstruction.
 import PairedWines from './components/PairedWines/PairedWines';
 import Home from './components/Home/Home';
 import './main_styles.css';
+import NotFound from './components/NotFound/NotFound';
 
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
           <Route exact path="/recipe" element={<RecipeCollection recipes={recipes} />} />
           <Route path={"/recipe/recipeDetail/:recipeId"} element={<RecipeInstruction />} />
           <Route path={"/pairedwines"} element={<PairedWines />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
       </Router>
     </>
