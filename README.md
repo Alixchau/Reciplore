@@ -2,7 +2,7 @@
 
 ### [Live Site] (https://reciplore.vercel.app/)
 
-![Reciplore] (https://ibb.co/jZvngJc)
+(https://i.ibb.co/7NJs2kw/Screenshot-2022-05-10-232144.png)
 
 ## Introduction
 
